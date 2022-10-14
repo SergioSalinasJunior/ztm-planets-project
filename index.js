@@ -42,5 +42,11 @@ fs.createReadStream('kepler-data.csv')
         console.log(err);
     })
     .on('end', () => {
+        console.log(habitablePlanets.map((planet) => {
+            return planet['kepler_name'];
+        }));
         console.log(`${habitablePlanets.length} habitable planets found!`);
     });
+
+// Results can be compared to the website below for possible habitable planets:
+// https://phl.upr.edu/projects/habitable-exoplanets-catalog
