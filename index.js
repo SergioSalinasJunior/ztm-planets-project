@@ -3,7 +3,7 @@
     -csv parse is a third-part node module
     -fs is the file system of the node module built in packages (commonJS)
 */
-const parse = require('csv-parse');
+const {parse} = require('csv-parse');
 const fs = require('fs');
 
 //array to hold the values read from the kepler_data
@@ -15,7 +15,11 @@ const results = [];
     2. error handling for mispeling of the file path
     3. at the end os the file print the results data and "done" message
 */
-fs.createReadStream('kepler_data');
+fs.createReadStream('kepler-data.csv')
+    .pipe(parse({
+        comment: '#',
+        columns: true
+    }))
     .on('data', (data) => {
         results.push(data);
     })
